@@ -1,6 +1,8 @@
-package hu.neuron.demoapp;
+package hu.neuron.simpleform;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,16 +10,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class HelloServlet
+ * Servlet implementation class Register
  */
-@WebServlet("/helloServlet")
-public class HelloServlet extends HttpServlet {
+@WebServlet("/Register")
+public class Register extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public HelloServlet() {
+    public Register() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,7 +28,14 @@ public class HelloServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.getWriter().println("<h1>Hello Servlet</h1>");
+		String email = request.getParameter("email");
+		String password = request.getParameter("password");
+		PrintWriter writer = response.getWriter();
+		String htmlRespone = "<html>";
+		htmlRespone += "<h2>Your email is: " + email+ "</h2>";
+		htmlRespone += "</html>";
+		 
+		writer.println(htmlRespone);
 	}
 
 }
