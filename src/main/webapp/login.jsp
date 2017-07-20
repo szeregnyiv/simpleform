@@ -42,11 +42,11 @@
 			</h6>
 		</c:if>
 		
-		<form method="post" accept-charset="UTF-8" action="Login">
+		<form name="form1" id="form1" method="post" accept-charset="UTF-8" action="Login">
 			<input type="text" name="name" placeholder="Felhasználónéve"
 				required="required" /> <input type="password" name="password"
 				placeholder="Jelszó" required="required" />
-			<button type="submit" class="btn btn-primary btn-block btn-large">Bejelentkezek!</button>
+			<button id="submit" class="btn btn-primary btn-block btn-large">Bejelentkezek!</button>
 			<h6>
 				<a href="register.jsp">Regisztráció</a>
 			</h6>
@@ -61,6 +61,23 @@
 		<script>
 			(adsbygoogle = window.adsbygoogle || []).push({});
 		</script>
+		<script src="script/jquery-1.10.2.min.js"></script>
+	<script type="text/javascript">
+		var form = $('#form1');
+		   $( "#submit" ).click(function(){
+			
+			$.ajax({
+				type : form.attr('method'),
+				url : form.attr('action'),
+				data : value,
+				success : function(data) {
+					var result = data;
+					$('#result').attr("value", result);
+				}
+			});
+			return false;
+		});
+	</script>
 	</div>
 </body>
 </html>
