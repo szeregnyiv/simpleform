@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF8"
 	pageEncoding="UTF8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-    "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="theme.css">
@@ -13,21 +12,13 @@
 
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
 <meta http-equiv="Content-Type" content="text/html; charset=UTF8">
-<title>Hello </title>
+<title>Kezdőlap</title>
 </head>
 <body>
 <div class="login">
     <h1>Üdvözöllek!</h1>
-    	<br>
-    	<a href="register.jsp" class="btn btn-primary btn-block btn-large">Regisztrálj</a>
-       
-        <h6>vagy</h6>
-         <a href="login.jsp" class="btn btn-primary btn-block btn-large">Jelentkezz be!</a>
-
-    
-    <br>
+    	<h6><a href="index.jsp">Kijelentkezés</a></h6>
     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <!-- login bootsnipp -->
 <ins class="adsbygoogle"

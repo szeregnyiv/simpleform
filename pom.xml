@@ -26,6 +26,12 @@
 			<version>2.3.1</version>
 			<scope>provided</scope>
 		</dependency>
+		
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<finalName>simpleform</finalName>
@@ -34,7 +40,10 @@
 				<groupId>org.eclipse.jetty</groupId>
 				<artifactId>jetty-maven-plugin</artifactId>
 				<version>9.4.6.v20170531</version>
-				<configuration><webApp><contextPath>/servlet</contextPath></webApp></configuration>
+				<configuration>
+				<scanIntervalSeconds>${jetty.scanInterval}</scanIntervalSeconds>
+				
+				<webApp><contextPath>/servlet</contextPath></webApp></configuration>
 			</plugin>
 		</plugins>
 	</build>

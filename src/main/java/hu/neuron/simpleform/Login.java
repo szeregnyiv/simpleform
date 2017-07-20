@@ -1,12 +1,9 @@
 package hu.neuron.simpleform;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,22 +12,28 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class Register
+ * Servlet implementation class Login
  */
-@WebServlet("Register")
-public class Register extends HttpServlet {
+@WebServlet("Login")
+public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public Register() {
+	public Login() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
@@ -46,51 +49,37 @@ public class Register extends HttpServlet {
 		ServletContext servletContext = request.getServletContext();
 		ArrayList<RegisterForm> list = (ArrayList<RegisterForm>) servletContext.getAttribute("list");
 		RegisterForm registerForm = new RegisterForm(name, password);
-
 		if (name == null || name.equals("")) {
 
 			request.setAttribute("error", "Nem adott meg felhasználó nevet!");
-			request.getRequestDispatcher("/register.jsp").forward(request, response);
+			request.getRequestDispatcher("/login.jsp").forward(request, response);
 
 		} else if (password == null || password.equals("")) {
 
 			request.setAttribute("error", "Nem adott meg jelszót!");
-			request.getRequestDispatcher("/register.jsp").forward(request, response);
+			request.getRequestDispatcher("/login.jsp").forward(request, response);
 
-		} else if (password.length() < 6) {
-			request.setAttribute("error", "A jelszó minimum 6 karakter!");
-			request.getRequestDispatcher("/register.jsp").forward(request, response);
-		} else if (name.length() < 6) {
-			request.setAttribute("error", "A felhasználónév minimum 6 karakter!");
-			request.getSession().setAttribute("name", name);
-			request.getRequestDispatcher("/register.jsp").forward(request, response);
-		} else if (list != null) {
-			System.err.println("itt1");
-			boolean itis = false;
+		}
+		if (list != null) {
+			boolean successLogin = false;
 			for (RegisterForm registerForm2 : list) {
-				System.err.println("itt2");
-				if (registerForm2.getName().equals(name)) {
+				if (registerForm2.getName().equals(name) && registerForm2.getPassword().equals(password)) {
+					successLogin = true;
+					request.getRequestDispatcher("/home.jsp").forward(request, response);
 
-					request.setAttribute("error", "Foglalt felhasználónév!");
-					request.getRequestDispatcher("/register.jsp").forward(request, response);
-					itis = true;
 				}
+
 			}
-			if (itis == false) {
-				list.add(registerForm);
-				servletContext.setAttribute("list", list);
-				request.setAttribute("error", "Sikeres regisztráció!");
-				request.getRequestDispatcher("/register.jsp").forward(request, response);
+			if (successLogin == false) {
+				request.setAttribute("error", "Nem megfelelõ jelszó, vagy felhasználónév!");
+				request.getRequestDispatcher("/login.jsp").forward(request, response);
 			}
 		} else {
-
-			list = new ArrayList();
-			list.add(registerForm);
-			servletContext.setAttribute("list", list);
-			request.setAttribute("error", "Sikeres regisztráció!");
+			request.setAttribute("error", "Nem regisztrált még felhasználó!");
 			request.getRequestDispatcher("/register.jsp").forward(request, response);
 
 		}
 
 	}
+
 }
